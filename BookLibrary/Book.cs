@@ -4,7 +4,7 @@ namespace BookLibrary
 {
     public class Book
     {
-        public Book(int id, string authors, string title)
+        public Book(int id, string title, string authors)
         {
             Id = id;
             Authors = authors;
