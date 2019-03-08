@@ -34,11 +34,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.87786F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.12214F));
@@ -61,7 +65,7 @@
             this.authorBox.Location = new System.Drawing.Point(67, 38);
             this.authorBox.Name = "authorBox";
             this.authorBox.Size = new System.Drawing.Size(520, 20);
-            this.authorBox.TabIndex = 3;
+            this.authorBox.TabIndex = 2;
             // 
             // titleBox
             // 
@@ -70,7 +74,7 @@
             this.titleBox.Location = new System.Drawing.Point(67, 3);
             this.titleBox.Name = "titleBox";
             this.titleBox.Size = new System.Drawing.Size(520, 20);
-            this.titleBox.TabIndex = 2;
+            this.titleBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -95,7 +99,7 @@
             // okButton
             // 
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Location = new System.Drawing.Point(12, 95);
+            this.okButton.Location = new System.Drawing.Point(12, 82);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(74, 27);
             this.okButton.TabIndex = 3;
@@ -103,19 +107,40 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
+            // cancelButton
+            // 
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(102, 82);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(74, 27);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorLabel.Location = new System.Drawing.Point(194, 87);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorLabel.TabIndex = 5;
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 132);
+            this.ClientSize = new System.Drawing.Size(610, 116);
+            this.Controls.Add(this.errorLabel);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BookForm";
             this.Text = "BookForm";
-            this.Validating += new System.ComponentModel.CancelEventHandler(this.BookForm_Validating);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -127,5 +152,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label errorLabel;
     }
 }

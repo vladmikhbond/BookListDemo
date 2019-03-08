@@ -22,13 +22,15 @@ namespace WinForms
 
         private void okButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(titleBox.Text))
+            {
+                DialogResult = DialogResult.None;
+                errorLabel.Text = "Title cannot be empty";
+                return;
+            }
             Title = titleBox.Text.Trim();
             Authors = authorBox.Text.Trim();
-        }
 
-        private void BookForm_Validating(object sender, CancelEventArgs e)
-        {
-           
         }
     }
 }
