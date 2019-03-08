@@ -43,7 +43,6 @@ namespace BookLibrary
         {
             int id = Books.Count() == 0 ? 1 : Books.Max(b => b.Id) + 1;
             Books.Add(new Book(id, title, authors));
-
         }
 
 

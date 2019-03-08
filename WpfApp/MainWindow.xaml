@@ -1,0 +1,52 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Menu Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <Button Content="Save" Click="SaveMenuItem_Click"/>
+                <Button Content="Exit"  Click="ExitMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit" >
+                <Button Content="New"  Click="NewMenuItem_Click"/>
+                <Button Content="Del" Click="DelMenuItem_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListBox Name="bookList" Grid.Column="0"  />
+            <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            
+
+            <Grid Grid.Column="2" ShowGridLines="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="20"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Title" Grid.Column="0" Grid.Row="0" />
+                <TextBlock Text="Authors" Grid.Column="0" Grid.Row="1" />
+                <TextBox Name="titleBox" Grid.Column="1" Grid.Row="0" />
+                <TextBox Name="AuthorsBox" Grid.Column="1" Grid.Row="1" />
+                <Button Name="okButton" Grid.Column="0" Grid.Row="2"  >Ok</Button>
+                <Button Name="cancelButton" Grid.Column="1" Grid.Row="2">Cancel</Button>
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+</Window>
