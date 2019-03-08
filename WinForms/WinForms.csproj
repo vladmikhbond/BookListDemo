@@ -90,9 +90,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="books.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="books.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookLibrary\BookLibrary.csproj">

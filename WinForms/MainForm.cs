@@ -14,19 +14,26 @@ namespace WinForms
 {
     public partial class MainForm : Form
     {
-        Library lib;
+        Library library;
 
         public MainForm()
         {     
             InitializeComponent();
 
-            lib = new Library { PathToFile = "books.txt" };
-            lib.LoadFromFile();
+            library = new Library { PathToFile = "books.txt" };
+            try
+            {
+                library.LoadFromFile();
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                MessageBox.Show($"File not found '{library.PathToFile}'");
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            bookBindingSource.DataSource = lib.Books;
+            bookBindingSource.DataSource = library.Books;
         }
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -34,7 +41,7 @@ namespace WinForms
             BookForm bookForm = new BookForm();
             if (bookForm.ShowDialog() == DialogResult.OK)
             {
-                lib.AddBook(bookForm.Title, bookForm.Authors);
+                library.AddBook(bookForm.Title, bookForm.Authors);
                 bookBindingSource.ResetBindings(false);
                 bookBox.SelectedIndex = bookBox.Items.Count - 1;
             }            
@@ -44,9 +51,19 @@ namespace WinForms
         {
             if (bookBox.SelectedIndex > -1)
             {                
-                lib.RemoveBookAt(bookBox.SelectedIndex);
+                library.RemoveBookAt(bookBox.SelectedIndex);
                 bookBindingSource.ResetBindings(false);
             }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            library.SaveToFile();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

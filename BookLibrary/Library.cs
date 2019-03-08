@@ -26,12 +26,26 @@ namespace BookLibrary
             }
         }
 
+        public void SaveToFile()
+        {           
+            using (TextWriter writer = new StreamWriter(File.OpenWrite(PathToFile)))
+            {
+                foreach (Book book in Books)
+                {
+                    writer.WriteLine(book.Id);
+                    writer.WriteLine(book.Title);
+                    writer.WriteLine(book.Authors);
+                }
+            }
+        }
+
         public void AddBook(string title, string authors)
         {
-            int id = Books.Max(b => b.Id) + 1;
+            int id = Books.Count() == 0 ? 1 : Books.Max(b => b.Id) + 1;
             Books.Add(new Book(id, title, authors));
 
         }
+
 
         public void RemoveBookAt(int idx)
         {
