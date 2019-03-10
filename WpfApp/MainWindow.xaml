@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <StackPanel >
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="File">
-                <Button Content="Save" Click="SaveMenuItem_Click"/>
-                <Button Content="Exit"  Click="ExitMenuItem_Click"/>
+                <MenuItem Header="Save" Click="SaveMenuItem_Click"/>
+                <MenuItem Header="Exit" Click="ExitMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Edit" >
-                <Button Content="New"  Click="NewMenuItem_Click"/>
-                <Button Content="Del" Click="DelMenuItem_Click" />
+                <MenuItem Header="New" Click="NewMenuItem_Click"/>
+                <MenuItem Header="Del" Click="DelMenuItem_Click"/>
             </MenuItem>
         </Menu>
         <Grid>
@@ -23,16 +23,26 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox Name="bookList" Grid.Column="0"  />
-            <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
-        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-            
 
-            <Grid Grid.Column="2" ShowGridLines="True">
+            <ListBox x:Name="bookList" Grid.Column="0" SelectionChanged="BookList_SelectionChanged"  >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock FontSize="16" Text="{Binding Path=Title}" HorizontalAlignment="Center" />
+                            <TextBlock FontSize="16" Text="{Binding Path=Authors}" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+                HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <Grid Grid.Column="2" ShowGridLines="False">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
-                    <RowDefinition Height="20"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50"></ColumnDefinition>
@@ -40,13 +50,15 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Title" Grid.Column="0" Grid.Row="0" />
                 <TextBlock Text="Authors" Grid.Column="0" Grid.Row="1" />
-                <TextBox Name="titleBox" Grid.Column="1" Grid.Row="0" />
-                <TextBox Name="AuthorsBox" Grid.Column="1" Grid.Row="1" />
-                <Button Name="okButton" Grid.Column="0" Grid.Row="2"  >Ok</Button>
-                <Button Name="cancelButton" Grid.Column="1" Grid.Row="2">Cancel</Button>
+                <TextBox Name="titleBox" Grid.Column="1" Grid.Row="0" Height="28" Text="{Binding Path=Title}"/>
+                <TextBox x:Name="authorsBox" Grid.Column="1" Grid.Row="1" Margin="0" Height="28"  Text="{Binding Path=Authors}"/>
+                <StackPanel  Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" >
+                    <Button Name="okButton" MinWidth="50" MinHeight="4" Margin="2">Ok</Button>
+                    <Button Name="cancelButton" MinWidth="50" MinHeight="4" Margin="2">Cancel</Button>
+                </StackPanel>
             </Grid>
 
         </Grid>
 
-    </Grid>
+    </StackPanel>
 </Window>

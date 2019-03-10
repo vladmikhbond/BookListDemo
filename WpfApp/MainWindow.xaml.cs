@@ -29,17 +29,20 @@ namespace WpfApp
             library = new Library { PathToFile = "books.txt" };
             try
             {
-                //library.LoadFromFile();
+                library.LoadFromFile();
             }
             catch (System.IO.FileNotFoundException)
             {
                 MessageBox.Show($"File not found '{library.PathToFile}'");
             }
+
+            bookList.ItemsSource = library.Books;
+            
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            library.SaveToFile();
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -49,11 +52,28 @@ namespace WpfApp
 
         private void NewMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            var bookWindow = new BookWindow();
 
-        }
+            if (bookWindow.ShowDialog() == true)
+            {
+                library.AddBook(bookWindow.BookTitle, bookWindow.BookAuthors);
+                
+                bookList.SelectedIndex = bookList.Items.Count - 1;
+            }
+       }
 
         private void DelMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            if (bookList.SelectedIndex != -1)
+            {
+                library.RemoveBookAt(bookList.SelectedIndex);
+            }
+        }
+
+        private void BookList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            authorsBox.DataContext = bookList.SelectedValue;
+            titleBox.DataContext = bookList.SelectedValue;
 
         }
     }

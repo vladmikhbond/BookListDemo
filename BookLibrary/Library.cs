@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
@@ -7,12 +8,12 @@ namespace BookLibrary
 {
     public class Library
     {
-        public List<Book> Books { private set; get; }
+        public ObservableCollection<Book> Books { protected set; get; }
         public string PathToFile { set; get; }
 
         public void LoadFromFile()
         {
-            Books = new List<Book>();
+            Books = new ObservableCollection<Book>();
             using (TextReader reader = new StreamReader(File.OpenRead(PathToFile)))
             {
                 string s = null;
