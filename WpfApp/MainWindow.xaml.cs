@@ -37,7 +37,8 @@ namespace WpfApp
             }
 
             bookList.ItemsSource = library.Books;
-            
+            if (bookList.Items.Count > 0)
+                bookList.SelectedIndex = 0;
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
