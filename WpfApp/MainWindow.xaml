@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="400" MinHeight="200">
-    <StackPanel Margin="0,0,0,5">
+        Title="MainWindow" Height="450" Width="800" MinWidth="400" MinHeight="200" SizeChanged="Window_SizeChanged">
+    <StackPanel >
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Save" Click="SaveMenuItem_Click"/>
@@ -23,17 +23,18 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
+                <ListBox x:Name="bookList" Grid.Column="0" SelectionChanged="BookList_SelectionChanged" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock FontSize="16" Text="{Binding Title}" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="16" Text="{Binding Authors}" HorizontalAlignment="Center" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-            <ListBox x:Name="bookList" Grid.Column="0" SelectionChanged="BookList_SelectionChanged" Height="383">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock FontSize="16" Text="{Binding Title}" HorizontalAlignment="Center" />
-                            <TextBlock FontSize="16" Text="{Binding Authors}" HorizontalAlignment="Center" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
 
             <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
                 HorizontalAlignment="Center" VerticalAlignment="Stretch" />

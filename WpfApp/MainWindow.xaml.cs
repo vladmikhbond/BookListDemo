@@ -48,7 +48,7 @@ namespace WpfApp
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         private void NewMenuItem_Click(object sender, RoutedEventArgs e)
@@ -76,6 +76,11 @@ namespace WpfApp
             authorsBox.DataContext = bookList.SelectedValue;
             titleBox.DataContext = bookList.SelectedValue;
 
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            bookList.Height = ActualHeight - 75;
         }
     }
 }
