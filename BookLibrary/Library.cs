@@ -11,6 +11,15 @@ namespace BookLibrary
         public ObservableCollection<Book> Books { protected set; get; }
         public string PathToFile { set; get; }
 
+        public Library()
+        { }
+
+        public Library(string pathToFile)
+        {
+            PathToFile = pathToFile;
+            LoadFromFile();
+        }
+
         public void LoadFromFile()
         {
             Books = new ObservableCollection<Book>();
