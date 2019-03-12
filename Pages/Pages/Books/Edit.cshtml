@@ -1,0 +1,14 @@
+﻿@page
+@model EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form method="post" asp-page="books/edit">
+    <input type="text" name="title" value="@Model.Title" />
+    <input type="text" name="authors" value="@Model.Authors" />
+    <input type="submit" value="Save" />
+</form>
+

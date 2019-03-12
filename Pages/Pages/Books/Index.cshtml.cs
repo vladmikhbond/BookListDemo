@@ -6,7 +6,7 @@ using BookLibrary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Pages.Pages
+namespace Pages.Pages.Books
 {
     public class IndexModel : PageModel
     {
