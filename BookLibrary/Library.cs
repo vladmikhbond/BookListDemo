@@ -60,5 +60,12 @@ namespace BookLibrary
         {
             Books.RemoveAt(idx);
         }
+
+        public void RemoveBookById(int id)
+        {
+            int idx = Books.TakeWhile(b => b.Id != id).Count();
+            Books.RemoveAt(idx);
+        }
+
     }
 }
