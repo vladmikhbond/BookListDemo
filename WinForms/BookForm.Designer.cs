@@ -36,6 +36,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.errorLabel = new System.Windows.Forms.Label();
+            this.errLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,17 +127,28 @@
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 5;
             // 
+            // errLabel
+            // 
+            this.errLabel.AutoSize = true;
+            this.errLabel.Location = new System.Drawing.Point(194, 89);
+            this.errLabel.Name = "errLabel";
+            this.errLabel.Size = new System.Drawing.Size(35, 13);
+            this.errLabel.TabIndex = 6;
+            this.errLabel.Text = "label3";
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 116);
+            this.Controls.Add(this.errLabel);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BookForm";
             this.Text = "BookForm";
+            this.Validating += new System.ComponentModel.CancelEventHandler(this.BookForm_Validating);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -154,5 +166,6 @@
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Label errLabel;
     }
 }

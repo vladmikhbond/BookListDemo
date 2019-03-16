@@ -25,5 +25,6 @@ namespace WinForms
             Authors = authorBox.Text.Trim();
 
         }
+
     }
 }

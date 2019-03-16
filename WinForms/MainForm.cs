@@ -20,6 +20,10 @@ namespace WinForms
         {     
             InitializeComponent();
 
+            List<Book> books = new List<Book>() { new Book(1, "Book1", "Author1"),
+                new Book(1, "Book1", "Author1"), };
+
+
             library = new Library { PathToFile = "books.txt" };
             try
             {
@@ -64,6 +68,15 @@ namespace WinForms
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void titleBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(titleBox.Text))
+            {
+                MessageBox.Show("Title cannot be empty.");
+                e.Cancel = true;
+            }
         }
     }
 }
