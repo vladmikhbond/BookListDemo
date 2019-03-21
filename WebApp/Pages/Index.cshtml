@@ -1,0 +1,29 @@
+﻿@page
+@model WebApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>Index</h2>
+<div>
+    <a asp-page="Create">New Book</a>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            @foreach (var book in Model.Books)
+            {
+            <tr>
+                <td width="100">@book.Title</td>
+                <td width="100">@book.Authors</td>
+                <td width="40">
+                    <a asp-page="Edit" asp-route-id="@book.Id">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@book.Id">Del</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
