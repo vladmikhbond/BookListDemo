@@ -13,7 +13,7 @@ namespace WebApp.Services
 
         public Library(IConfiguration config)
         {
-            var client = new MongoClient(config.GetConnectionString("LibraryDb"));
+            var client = new MongoClient(config.GetConnectionString("LibraryConStr"));
             var database = client.GetDatabase("LibraryDb");
 
             _books = database.GetCollection<Book>("Books");
