@@ -47,6 +47,7 @@ namespace WinForms
             this.titleBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -100,23 +101,24 @@ namespace WinForms
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem1,
+            this.editToolStripMenuItem1,
             this.delToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.editToolStripMenuItem.Text = "Books";
             // 
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem1.Text = "New";
             this.newToolStripMenuItem1.Click += new System.EventHandler(this.newToolStripMenuItem1_Click);
             // 
             // delToolStripMenuItem
             // 
             this.delToolStripMenuItem.Name = "delToolStripMenuItem";
-            this.delToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.delToolStripMenuItem.Text = "Del";
+            this.delToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.delToolStripMenuItem.Text = "Delete";
             this.delToolStripMenuItem.Click += new System.EventHandler(this.delToolStripMenuItem_Click);
             // 
             // splitContainer1
@@ -152,7 +154,7 @@ namespace WinForms
             // 
             // bookBindingSource
             // 
-            this.bookBindingSource.DataSource = typeof(Book);
+            this.bookBindingSource.DataSource = typeof(WinForms.Models.Book);
             // 
             // tableLayoutPanel1
             // 
@@ -214,6 +216,13 @@ namespace WinForms
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             // 
+            // editToolStripMenuItem1
+            // 
+            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
+            this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem1.Text = "Edit";
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +266,7 @@ namespace WinForms
         private System.Windows.Forms.ToolStripMenuItem delToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
     }
 }
 

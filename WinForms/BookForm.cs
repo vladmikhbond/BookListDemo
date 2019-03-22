@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using WinForms.Models;
 
 namespace WinForms
 {
     public partial class BookForm : Form
     {
-        public string Title { private set; get; }
-        public string Authors { private set; get; }
+        public Book Book { private set; get; }
 
-        public BookForm()
+        public BookForm(Book book)
         {
             InitializeComponent();
+            Book = book;
+            titleBox.Text = Book.Title;
+            authorBox.Text = Book.Authors;
         }
 
         private void okButton_Click(object sender, EventArgs e)
@@ -21,9 +24,8 @@ namespace WinForms
                 errorLabel.Text = "Title cannot be empty";
                 return;
             }
-            Title = titleBox.Text.Trim();
-            Authors = authorBox.Text.Trim();
-
+            Book.Title = titleBox.Text.Trim();
+            Book.Authors = authorBox.Text.Trim();
         }
 
     }

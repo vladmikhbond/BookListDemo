@@ -49,14 +49,11 @@ namespace WinForms.Models
             }
         }
 
-
-
-        public void AddBook(string title, string authors)
+        public void AddBook(Book book)
         {
-            int id = Books.Count() == 0 ? 1 : Books.Max(b => b.Id) + 1;
-            Books.Add(new Book(id, title, authors));
+            book.Id = Books.Count() == 0 ? 1 : Books.Max(b => b.Id) + 1;
+            Books.Add(book);
         }
-
 
         public void RemoveBookAt(int idx)
         {

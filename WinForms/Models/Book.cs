@@ -8,6 +8,8 @@ namespace WinForms.Models
 {
     public class Book
     {
+        public Book() { }
+
         public Book(int id, string title, string authors)
         {
             Id = id;

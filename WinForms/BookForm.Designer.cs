@@ -132,9 +132,8 @@
             this.errLabel.AutoSize = true;
             this.errLabel.Location = new System.Drawing.Point(194, 89);
             this.errLabel.Name = "errLabel";
-            this.errLabel.Size = new System.Drawing.Size(35, 13);
+            this.errLabel.Size = new System.Drawing.Size(0, 13);
             this.errLabel.TabIndex = 6;
-            this.errLabel.Text = "label3";
             // 
             // BookForm
             // 

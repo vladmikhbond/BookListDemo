@@ -36,11 +36,11 @@ namespace WinForms
 
         private void newToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            BookForm bookForm = new BookForm();
+            BookForm bookForm = new BookForm(new Book());
 
             if (bookForm.ShowDialog() == DialogResult.OK)
             {
-                _library.AddBook(bookForm.Title, bookForm.Authors);
+                _library.AddBook(bookForm.Book);
                 bookBindingSource.ResetBindings(false);
                 bookBox.SelectedIndex = bookBox.Items.Count - 1;
             }            
@@ -72,6 +72,23 @@ namespace WinForms
                 MessageBox.Show("Title cannot be empty.");
                 e.Cancel = true;
             }
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Book book = (Book)bookBox.SelectedItem;
+            if (book == null)
+            {
+                return;
+            }
+            BookForm bookForm = new BookForm(book);
+
+            if (bookForm.ShowDialog() == DialogResult.OK)
+            {               
+                bookBindingSource.ResetBindings(false);
+                bookBox.SelectedIndex = bookBox.Items.Count - 1;
+            }
+
         }
     }
 }
