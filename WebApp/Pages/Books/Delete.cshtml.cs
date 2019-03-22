@@ -35,7 +35,7 @@ namespace WebApp.Pages
             {
                 _db.Remove(book.Id);
             }
-            return RedirectToPage("/Index");
+            return RedirectToPage("Index");
         }
     }
 }

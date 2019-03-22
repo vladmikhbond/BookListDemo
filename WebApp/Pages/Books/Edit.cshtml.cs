@@ -27,7 +27,7 @@ namespace WebApp.Pages
         {
             if (ModelState.IsValid) {
                 _db.Update(Book.Id, Book);
-                return RedirectToPage("/Index");
+                return RedirectToPage("Index");
             }
             return Page();
         }
