@@ -14,22 +14,15 @@ namespace WebApp.Pages
 
     public class CreateModel : PageModel
     {
-        readonly Library _lib;
+        readonly Library _db;
 
         public CreateModel(Library lib)
         {
-            _lib = lib;
+            _db = lib;
         }
 
-        //[BindProperty(SupportsGet = true)]
-        //public int Id { set; get; }
-
-        [BindProperty]
-        [Required]
-        public string Title { set; get; }
-        [BindProperty]
-        [Required]
-        public string Authors { set; get; }
+        [BindProperty(SupportsGet = true)]
+        public Book Book { set; get; }
 
         public void OnGet()
         {
@@ -37,9 +30,8 @@ namespace WebApp.Pages
 
         public IActionResult OnPostAsync()
         {
-            if (ModelState.IsValid) {
-                var book = new Book { Authors = Authors, Title = Title };
-                book = _lib.Create(book);
+            if (ModelState.IsValid) {                
+                _db.Create(Book);
                 return RedirectToPage("/Index");
             }
             return Page();

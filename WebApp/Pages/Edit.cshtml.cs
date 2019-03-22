@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApp.Models;
 using WebApp.Services;
@@ -14,38 +8,25 @@ namespace WebApp.Pages
 
     public class EditModel : PageModel
     {
-        readonly Library _lib;
+        readonly Library _db;
 
         public EditModel(Library lib)
         {
-            _lib = lib;
+            _db = lib;
         }
 
         [BindProperty(SupportsGet = true)]
-        public string Id { set; get; }
-
-        [BindProperty]
-        [Required]
-        public string Title { set; get; }
-        [BindProperty]
-        [Required]
-        public string Authors { set; get; }
+        public Book Book { set; get; }
 
         public void OnGet()
         {
-            Book book = _lib.Get(Id);
-            if (book != null)
-            {               
-                Title = book.Title;
-                Authors = book.Authors;
-            }
+            Book = _db.Get(Book.Id);
         }
 
         public IActionResult OnPost()
         {
             if (ModelState.IsValid) {
-                var newBook = new Book { Authors = Authors, Id = Id, Title = Title };
-                _lib.Update(Id, newBook);
+                _db.Update(Book.Id, Book);
                 return RedirectToPage("/Index");
             }
             return Page();

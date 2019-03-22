@@ -13,39 +13,27 @@ namespace WebApp.Pages
 
     public class DeleteModel : PageModel
     {
-        readonly Library _lib;
+        readonly Library _db;
 
         public DeleteModel(Library lib)
         {
-            _lib = lib;
+            _db = lib;
         }
 
         [BindProperty(SupportsGet = true)]
-        public string Id { set; get; }
-
-        [BindProperty]
-        [Required]
-        public string Title { set; get; }
-        [BindProperty]
-        [Required]
-        public string Authors { set; get; }
+        public Book Book { set; get; }
 
         public void OnGet()
         {
-            Book book = _lib.Get().SingleOrDefault(b => b.Id == Id);
-            if (book != null)
-            {
-                Title = book.Title;
-                Authors = book.Authors;
-            }
+            Book = _db.Get().SingleOrDefault(b => b.Id == Book.Id);
         }
 
         public IActionResult OnPostAsync()
         {
-            Book book = _lib.Get().SingleOrDefault(b => b.Id == Id);
+            Book book = _db.Get().SingleOrDefault(b => b.Id == Book.Id);
             if (book != null)
             {
-                _lib.Remove(book.Id);
+                _db.Remove(book.Id);
             }
             return RedirectToPage("/Index");
         }
