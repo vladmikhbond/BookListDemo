@@ -58,6 +58,8 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Library.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BookForm.resx">
@@ -91,12 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="books.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookLibrary\BookLibrary.csproj">
-      <Project>{1d6f1b97-3b9a-403c-8fc0-46d56c008c31}</Project>
-      <Name>BookLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

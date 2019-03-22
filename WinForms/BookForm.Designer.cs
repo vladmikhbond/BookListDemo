@@ -148,7 +148,6 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BookForm";
             this.Text = "BookForm";
-            this.Validating += new System.ComponentModel.CancelEventHandler(this.BookForm_Validating);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

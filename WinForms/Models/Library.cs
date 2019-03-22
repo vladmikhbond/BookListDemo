@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
-namespace BookLibrary
+namespace WinForms.Models
 {
     public class Library
     {
-        public ObservableCollection<Book> Books { protected set; get; }
+        public List<Book> Books { protected set; get; }
 
         public string PathToFile { set; get; }
 
@@ -23,7 +22,7 @@ namespace BookLibrary
 
         public void SaveToFile()
         {
-            using (TextWriter writer = new StreamWriter(File.OpenWrite(PathToFile)))
+            using (TextWriter writer = new StreamWriter(PathToFile))
             {
                 foreach (Book book in Books)
                 {
@@ -36,7 +35,7 @@ namespace BookLibrary
 
         public void LoadFromFile()
         {
-            Books = new ObservableCollection<Book>();
+            Books = new List<Book>();
             using (TextReader reader = new StreamReader(File.OpenRead(PathToFile)))
             {
                 string s = null;
@@ -69,6 +68,5 @@ namespace BookLibrary
             int idx = Books.TakeWhile(b => b.Id != id).Count();
             Books.RemoveAt(idx);
         }
-
     }
 }

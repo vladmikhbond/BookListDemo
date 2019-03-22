@@ -1,4 +1,6 @@
-﻿namespace WinForms
+﻿using WinForms.Models;
+
+namespace WinForms
 {
     partial class MainForm
     {
@@ -150,7 +152,7 @@
             // 
             // bookBindingSource
             // 
-            this.bookBindingSource.DataSource = typeof(BookLibrary.Book);
+            this.bookBindingSource.DataSource = typeof(Book);
             // 
             // tableLayoutPanel1
             // 
