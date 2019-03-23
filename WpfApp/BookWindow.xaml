@@ -19,7 +19,8 @@
         <TextBlock Text="Title" Grid.Column="0" Grid.Row="0" />
         <TextBlock Text="Authors" Grid.Column="0" Grid.Row="1" />
         <TextBox Name="titleBox" Grid.Column="1" Grid.Row="0" Height="28" Text="{Binding Path=Title}"/>
-        <TextBox x:Name="authorsBox" Grid.Column="1" Grid.Row="1" Margin="0" Height="28" />
+        <TextBox x:Name="authorBox" Grid.Column="1" Grid.Row="1" Margin="0" Height="28" />
+        <TextBlock x:Name="errorLabel"></TextBlock>
         <StackPanel  Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" >
             <Button Name="okButton" MinWidth="50" MinHeight="4" Margin="2" Click="OkButton_Click">Ok</Button>
             <Button Name="cancelButton" MinWidth="50" MinHeight="4" Margin="2" Click="CancelButton_Click">Cancel</Button>

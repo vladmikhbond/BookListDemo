@@ -18,7 +18,7 @@ namespace WinForms
                 new Book(1, "Book1", "Author1"),
                 new Book(1, "Book1", "Author1"), };
 
-            _library = new Library { PathToFile = "books.txt" };
+            _library = new Library("books.txt");
             try
             {
                 _library.LoadFromFile();

@@ -74,6 +74,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Library.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,12 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookLibrary\BookLibrary.csproj">
-      <Project>{1d6f1b97-3b9a-403c-8fc0-46d56c008c31}</Project>
-      <Name>BookLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="books.txt">

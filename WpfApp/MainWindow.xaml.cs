@@ -1,18 +1,6 @@
-﻿using BookLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfApp.Models;
 
 namespace WpfApp
 {
@@ -21,29 +9,29 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Library library;
+        Library _library;
 
         public MainWindow()
         {
             InitializeComponent();
-            library = new Library { PathToFile = "books.txt" };
+            _library = new Library("books.txt");
             try
             {
-                library.LoadFromFile();
+                _library.LoadFromFile();
             }
             catch (System.IO.FileNotFoundException)
             {
-                MessageBox.Show($"File not found '{library.PathToFile}'");
+                MessageBox.Show($"Library file not found '{_library.PathToFile}'");
             }
 
-            bookList.ItemsSource = library.Books;
+            bookList.ItemsSource = _library.Books;
             if (bookList.Items.Count > 0)
                 bookList.SelectedIndex = 0;
         }
 
         private void SaveMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            library.SaveToFile();
+            _library.SaveToFile();
         }
 
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
@@ -57,8 +45,7 @@ namespace WpfApp
 
             if (bookWindow.ShowDialog() == true)
             {
-                library.AddBook(bookWindow.BookTitle, bookWindow.BookAuthors);
-                
+                _library.AddBook(bookWindow.Book);                
                 bookList.SelectedIndex = bookList.Items.Count - 1;
             }
        }
@@ -67,7 +54,7 @@ namespace WpfApp
         {
             if (bookList.SelectedIndex != -1)
             {
-                library.RemoveBookAt(bookList.SelectedIndex);
+                _library.RemoveBookAt(bookList.SelectedIndex);
             }
         }
 
