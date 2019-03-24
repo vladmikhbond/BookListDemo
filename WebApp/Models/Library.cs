@@ -5,9 +5,23 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 
-namespace WebApp.Services
+namespace WebApp.Models
 {
-    public class Library
+    public interface ILibrary
+    {
+        List<Book> Get();
+
+        Book Get(string id);
+
+        Book Create(Book book);
+
+        void Update(string id, Book bookIn);
+
+        void Remove(string id);
+    }
+
+
+    public class Library: ILibrary
     {
         private readonly IMongoCollection<Book> _books;
 
@@ -40,10 +54,10 @@ namespace WebApp.Services
             _books.ReplaceOne(book => book.Id == id, bookIn);
         }
 
-        public void Remove(Book bookIn)
-        {
-            _books.DeleteOne(book => book.Id == bookIn.Id);
-        }
+        //public void Remove(Book bookIn)
+        //{
+        //    _books.DeleteOne(book => book.Id == bookIn.Id);
+        //}
 
         public void Remove(string id)
         {

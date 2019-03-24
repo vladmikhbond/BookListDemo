@@ -32,7 +32,7 @@ namespace WpfApp.Models
             }
         }
 
-        public void LoadFromFile()
+        void LoadFromFile()
         {
             Books = new ObservableCollection<Book>();
 
