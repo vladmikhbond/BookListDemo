@@ -9,31 +9,22 @@ namespace WinForms.Models
     {
         public List<Book> Books { protected set; get; }
 
-        public string PathToFile { set; get; }
+        string _pathToFile { set; get; }
 
         public Library(string pathToFile)
         {
-            PathToFile = pathToFile;
-            LoadFromFile();
-        }
-
-        public void SaveToFile()
-        {
-            using (TextWriter writer = new StreamWriter(PathToFile))
-            {
-                foreach (Book book in Books)
-                {
-                    writer.WriteLine(book.Id);
-                    writer.WriteLine(book.Title);
-                    writer.WriteLine(book.Authors);
-                }
+            _pathToFile = pathToFile;
+            if (File.Exists(_pathToFile)) {
+                LoadBooks();
+            } else {
+                Books = new List<Book>();
             }
         }
 
-        public void LoadFromFile()
+        void LoadBooks()
         {
             Books = new List<Book>();
-            using (TextReader reader = new StreamReader(File.OpenRead(PathToFile)))
+            using (TextReader reader = new StreamReader(File.OpenRead(_pathToFile)))
             {
                 string s = null;
                 while ((s = reader.ReadLine()) != null)
@@ -44,6 +35,19 @@ namespace WinForms.Models
                     Books.Add(new Book(id, title, authors));
                 }
             }
+        }    
+
+        public void SaveChanges()
+        {
+            using (TextWriter writer = new StreamWriter(_pathToFile))
+            {
+                foreach (Book book in Books)
+                {
+                    writer.WriteLine(book.Id);
+                    writer.WriteLine(book.Title);
+                    writer.WriteLine(book.Authors);
+                }
+            }
         }
 
         public void AddBook(Book book)
@@ -52,12 +56,7 @@ namespace WinForms.Models
             Books.Add(book);
         }
 
-        public void RemoveBookAt(int idx)
-        {
-            Books.RemoveAt(idx);
-        }
-
-        public void RemoveBookById(int id)
+        public void RemoveBook(int id)
         {
             int idx = Books.TakeWhile(b => b.Id != id).Count();
             Books.RemoveAt(idx);

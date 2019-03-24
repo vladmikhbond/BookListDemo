@@ -14,19 +14,7 @@ namespace WinForms
         {     
             InitializeComponent();
 
-            List<Book> books = new List<Book>() {
-                new Book(1, "Book1", "Author1"),
-                new Book(1, "Book1", "Author1"), };
-
             _library = new Library("books.txt");
-            try
-            {
-                _library.LoadFromFile();
-            }
-            catch (System.IO.FileNotFoundException)
-            {
-                MessageBox.Show($"Library file not found '{_library.PathToFile}'");
-            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -46,38 +34,9 @@ namespace WinForms
             }            
         }
 
-        private void delToolStripMenuItem_Click(object sender, EventArgs e)
+        private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (bookBox.SelectedIndex > -1)
-            {                
-                _library.RemoveBookAt(bookBox.SelectedIndex);
-                bookBindingSource.ResetBindings(false);
-            }
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _library.SaveToFile();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void titleBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(titleBox.Text))
-            {
-                MessageBox.Show("Title cannot be empty.");
-                e.Cancel = true;
-            }
-        }
-
-        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Book book = (Book)bookBox.SelectedItem;
-            if (book == null)
+            if (!(bookBox.SelectedItem is Book book))
             {
                 return;
             }
@@ -90,5 +49,36 @@ namespace WinForms
             }
 
         }
+
+        private void delToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bookBox.SelectedIndex > -1)
+            {
+                int id = (bookBox.SelectedItem as Book).Id;
+                _library.RemoveBook(id);
+                bookBindingSource.ResetBindings(false);
+            }
+        }
+
+        private void titleBox_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(titleBox.Text))
+            {
+                MessageBox.Show("Title cannot be empty.");
+                e.Cancel = true;
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _library.SaveChanges();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
     }
 }
