@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WinForms.Models
 {
-    public class Library
+    public class Library: ILibrary
     {
         public List<Book> Books { protected set; get; }
 
@@ -14,9 +14,12 @@ namespace WinForms.Models
         public Library(string pathToFile)
         {
             _pathToFile = pathToFile;
-            if (File.Exists(_pathToFile)) {
+            if (File.Exists(_pathToFile))
+            {
                 LoadBooks();
-            } else {
+            }
+            else
+            {
                 Books = new List<Book>();
             }
         }
@@ -28,14 +31,13 @@ namespace WinForms.Models
             {
                 string s = null;
                 while ((s = reader.ReadLine()) != null)
-                {
-                    int id = Convert.ToInt32(s);
+                {                   
                     var title = reader.ReadLine();
                     var authors = reader.ReadLine();
-                    Books.Add(new Book(id, title, authors));
+                    Books.Add(new Book { Id = s, Title = title, Authors = authors });
                 }
             }
-        }    
+        }
 
         public void SaveChanges()
         {
@@ -50,13 +52,15 @@ namespace WinForms.Models
             }
         }
 
-        public void AddBook(Book book)
+        public Book AddBook(Book book)
         {
-            book.Id = Books.Count() == 0 ? 1 : Books.Max(b => b.Id) + 1;
+
+            book.Id = Books.Count() == 0 ? "1" : (Books.Max(b => Convert.ToInt32(b.Id)) + 1).ToString();
             Books.Add(book);
+            return book;
         }
 
-        public void RemoveBook(int id)
+        public void RemoveBook(string id)
         {
             int idx = Books.TakeWhile(b => b.Id != id).Count();
             Books.RemoveAt(idx);

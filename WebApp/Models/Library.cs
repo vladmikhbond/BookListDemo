@@ -54,11 +54,6 @@ namespace WebApp.Models
             _books.ReplaceOne(book => book.Id == id, bookIn);
         }
 
-        //public void Remove(Book bookIn)
-        //{
-        //    _books.DeleteOne(book => book.Id == bookIn.Id);
-        //}
-
         public void Remove(string id)
         {
             _books.DeleteOne(book => book.Id == id);

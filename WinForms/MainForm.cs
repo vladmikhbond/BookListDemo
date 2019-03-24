@@ -8,13 +8,15 @@ namespace WinForms
 {
     public partial class MainForm : Form
     {
-        Library _library;
+        ILibrary _library;
 
         public MainForm()
         {     
             InitializeComponent();
 
             _library = new Library("books.txt");
+            // _library = new LibraryM("mongodb://localhost:27017");
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -29,7 +31,11 @@ namespace WinForms
             if (bookForm.ShowDialog() == DialogResult.OK)
             {
                 _library.AddBook(bookForm.Book);
+                // for LibraryM
+                bookBindingSource.DataSource = _library.Books;
+                // for Library
                 bookBindingSource.ResetBindings(false);
+
                 bookBox.SelectedIndex = bookBox.Items.Count - 1;
             }            
         }
@@ -43,7 +49,10 @@ namespace WinForms
             BookForm bookForm = new BookForm(book);
 
             if (bookForm.ShowDialog() == DialogResult.OK)
-            {               
+            {
+                // for LibraryM
+                bookBindingSource.DataSource = _library.Books;
+                // for Library
                 bookBindingSource.ResetBindings(false);
                 bookBox.SelectedIndex = bookBox.Items.Count - 1;
             }
@@ -54,8 +63,11 @@ namespace WinForms
         {
             if (bookBox.SelectedIndex > -1)
             {
-                int id = (bookBox.SelectedItem as Book).Id;
+                string id = (bookBox.SelectedItem as Book).Id;
                 _library.RemoveBook(id);
+                // for LibraryM
+                bookBindingSource.DataSource = _library.Books;
+                // for Library
                 bookBindingSource.ResetBindings(false);
             }
         }
