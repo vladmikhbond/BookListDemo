@@ -14,9 +14,8 @@ namespace WinForms
         {     
             InitializeComponent();
 
-            _library = new Library("books.txt");
-            // _library = new LibraryM("mongodb://localhost:27017");
-
+            //_library = new Library("books.txt");
+            _library = new LibraryM("mongodb://localhost:27017");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
