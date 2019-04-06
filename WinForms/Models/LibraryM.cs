@@ -18,8 +18,12 @@ namespace WinForms.Models
         string _pathToFile { set; get; }
 
         public LibraryM(string conStr)
-        {
+        {            
             var client = new MongoClient(conStr);
+            var colNames = client.ListDatabaseNames().ToList();
+      
+            
+
             var database = client.GetDatabase("LibraryDb");
             _books = database.GetCollection<Book>("Books");
         }

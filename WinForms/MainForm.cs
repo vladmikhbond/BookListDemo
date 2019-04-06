@@ -15,7 +15,8 @@ namespace WinForms
             InitializeComponent();
 
             //_library = new Library("books.txt");
-            _library = new LibraryM("mongodb://localhost:27017");
+            string conStr = "mongodb+srv://oop:qweszxcQWESZXC@ze-p5ww2.mongodb.net/test?retryWrites=true";
+            _library = new LibraryM(conStr);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
